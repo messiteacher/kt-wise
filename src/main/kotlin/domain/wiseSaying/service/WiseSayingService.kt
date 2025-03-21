@@ -27,4 +27,18 @@ class WiseSayingService {
     fun getItem(id: Int): WiseSaying? {
         return wiseSayings.find { it.id == id }
     }
+
+    fun modify(wiseSaying: WiseSaying, saying: String, author: String): WiseSaying? {
+
+        val index = wiseSayings.indexOfFirst { it.id == wiseSaying.id }
+
+        if (index == -1) {
+            return null
+        }
+
+        val new = wiseSaying.copy(saying = saying, author = author)
+        wiseSayings[index] = new
+
+        return new
+    }
 }
