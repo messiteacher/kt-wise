@@ -50,6 +50,14 @@ class WiseSayingFileRepository : WiseSayingRepository{
 
     }
 
+    fun saveLastId(i: Int) {
+        tableDirPath.resolve("lastId.txt").toFile().writeText(i.toString())
+    }
+
+    fun loadLastId(): Int {
+        return tableDirPath.resolve("lastId.txt").toFile().readText().toIntOrNull() ?: 0
+    }
+
     fun initTable() {
 
         tableDirPath.toFile().run {
