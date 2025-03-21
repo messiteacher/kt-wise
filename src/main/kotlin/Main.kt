@@ -13,9 +13,10 @@ fun main() {
         val input = readlnOrNull() ?: ""
         val rq = Request(input)
 
-        when (input) {
+        when (rq.actionName) {
 
             "종료" -> break
+
             "등록" -> {
 
                 print("명언: ")
@@ -29,14 +30,16 @@ fun main() {
 
                 println("${lastId}번 명언이 등록되었습니다.")
             }
+
             "목록" -> {
 
                 println("번호 / 작가 / 명언")
                 println("----------------------")
                 wiseSayings.forEach {
-                    println("${it.id} / ${it.saying} / ${it.author}")
+                    println("${it.id} / ${it.author} / ${it.saying}")
                 }
             }
+
             "삭제" -> {
 
                 rq.getParam("id")?.let {
