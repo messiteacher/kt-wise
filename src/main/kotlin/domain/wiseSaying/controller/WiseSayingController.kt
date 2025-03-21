@@ -1,12 +1,12 @@
 package domain.wiseSaying.controller
 
-import domain.wiseSaying.service.WiseSayingService
 import global.Request
+import global.SingletonScope
 
 class WiseSayingController(
 ) {
 
-    private val wiseSayingService = WiseSayingService()
+    private val wiseSayingService = SingletonScope.wiseSayingService
 
     fun write() {
 
