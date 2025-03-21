@@ -13,19 +13,24 @@ class TestBot {
 
             val formattedInput = input.trimIndent().plus("\n종료")
 
-            val out = ByteArrayOutputStream()
-            val testOut = PrintStream(out) // 커스텀 출력 - 배열
+            val out = ByteArrayOutputStream().use { out ->
 
-            System.setIn(formattedInput.byteInputStream()) // 커스텀 입력 - 매개변수 문자열
-            System.setOut(testOut)
+                val testOut = PrintStream(out).use {
+                    try {
 
-            val app = App()
-            app.run()
+                        System.setOut(it)
+                        System.setIn(formattedInput.byteInputStream()) // 커스텀 입력 - 매개변수 문자열
 
-            System.setIn(originalIn) // 표준 입력으로 원복
-            System.setOut(originalOut) // 표준 출력으로 원복
+                        val app = App()
+                        app.run()
+                    } finally {
 
-            return out.toString().trim().replace("\\r\\n", "\n")
+                        System.setIn(originalIn) // 표준 입력으로 원복
+                        System.setOut(originalOut) // 표준 출력으로 원복
+                    }
+                } // 커스텀 출력 - 배열
+                return out.toString().trim().replace("\\r\\n", "\n")
+            }
         }
     }
 }
