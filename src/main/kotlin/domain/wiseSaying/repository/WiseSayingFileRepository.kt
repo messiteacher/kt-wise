@@ -91,7 +91,7 @@ class WiseSayingFileRepository : WiseSayingRepository{
 
         val result = JsonUtil.listToJson(mapList)
             .also {
-                tableDirPath.toFile().writeText(it)
+                tableDirPath.resolve("data.json").toFile().writeText(it)
             }
     }
 }

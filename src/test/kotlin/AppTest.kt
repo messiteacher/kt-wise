@@ -7,7 +7,9 @@ class AppTest {
 
     @BeforeEach
     fun setup() {
+
         SingletonScope.wiseSayingRepository.clear()
+        SingletonScope.wiseSayingRepository.initTable()
     }
 
     @Test

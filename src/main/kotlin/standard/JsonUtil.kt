@@ -2,7 +2,7 @@ package standard
 
 object JsonUtil {
 
-    fun listToJson(list: List<Map<String, String>>): String {
+    fun listToJson(list: List<Map<String, Any>>): String {
 
         return list.joinToString (
             prefix = "[\n", postfix = "\n]", separator = ",\n"
@@ -11,7 +11,7 @@ object JsonUtil {
         }
     }
 
-    fun mapToJson(map: Map<String, String>): String {
+    fun mapToJson(map: Map<String, Any>): String {
 
         return map.entries.joinToString (
             prefix = "[\n", postfix = "\n]", separator = ",\n"

@@ -28,8 +28,8 @@ data class WiseSaying(
         )
 
     companion object {
-        fun fromJson(jsonStr: Any): WiseSaying {
-
+        fun fromJson(jsonStr: String): WiseSaying {
+            
             val jsonMap = JsonUtil.jsonStrToMap(jsonStr)
 
             val id = jsonMap["id"] as Int
