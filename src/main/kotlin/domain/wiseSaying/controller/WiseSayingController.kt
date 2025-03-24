@@ -77,4 +77,28 @@ class WiseSayingController(
         wiseSayingService.build()
         println("data.json 파일의 내용이 갱신되었습니다.")
     }
+
+    fun list(rq: Request) {
+
+        val keyword = rq.getParamDefault("keyword", "")
+        val keywordType = rq.getParamDefault("keywordType", "saying")
+
+        if (keyword.isNotBlank()) {
+            println(
+                """
+                ----------------------
+                검색타입 : $keywordType
+                검색어 : $keyword
+                ----------------------
+            """.trimIndent()
+            )
+        }
+
+        println("번호 / 작가 / 명언")
+        println("----------------------")
+
+        wiseSayingService.findByKeyword(keywordType, keyword).forEach {
+            println("${it.id} / ${it.author} / ${it.saying}")
+        }
+    }
 }

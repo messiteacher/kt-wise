@@ -30,7 +30,7 @@ class WiseSayingFileRepository : WiseSayingRepository{
 
         return tableDirPath.toFile()
             .listFiles()
-            ?.filter { it.extension == "json"}
+            ?.filter { it.extension == "json" }
             ?.map { WiseSaying.fromJson(it.readText()) }
             .orEmpty()
     }
@@ -50,6 +50,26 @@ class WiseSayingFileRepository : WiseSayingRepository{
 
     override fun clear() {
         tableDirPath.toFile().deleteRecursively()
+    }
+
+    override fun findByAuthorLike(keyword: String): List<WiseSaying> {
+
+        if (keyword.isBlank()) {
+            return findAll()
+        }
+
+        return findAll()
+            .filter { it.author.contains(keyword) }
+    }
+
+    override fun findBySayingLike(keyword: String): List<WiseSaying> {
+
+        if (keyword.isBlank()) {
+            return findAll()
+        }
+
+        return findAll()
+            .filter { it.saying.contains(keyword) }
     }
 
     fun saveLastId(id: Int) {
