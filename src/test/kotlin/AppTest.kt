@@ -137,30 +137,17 @@ class AppTest {
     }
 
     @Test
-    fun `makeSampleData`() {
-
-        TestBot.makeSampleData(10)
-
-        val out = TestBot.run(
-            """
-            목록
-        """.trimIndent()
-        )
-
-        assertThat(out).contains("1 / ")
-        assertThat(out).contains("10 / ")
-    }
-
-    @Test
     fun `목록(페이징) - page=1`() {
 
         TestBot.makeSampleData(10)
 
         val result = TestBot.run(
             """
-              목록
-              """
+             목록
+             """
         )
+
+        println(result)
 
         assertThat(result)
             .contains("10 / 작자미상 / 명언 10")
@@ -177,8 +164,8 @@ class AppTest {
 
         val result = TestBot.run(
             """
-              목록?page=2
-              """
+             목록?page=2
+             """
         )
 
         assertThat(result)
@@ -190,14 +177,14 @@ class AppTest {
     }
 
     @Test
-    fun `목록?page=2&keywordType=content&keyword=명언`() {
+    fun `목록?page=2&keywordType=saying&keyword=명언`() {
 
         TestBot.makeSampleData(10)
 
         val result = TestBot.run(
             """
-              목록?page=2&keywordType=content&keyword=명언
-              """.trimIndent()
+             목록?page=2&keywordType=saying&keyword=명언
+             """.trimIndent()
         )
 
         assertThat(result)
@@ -209,14 +196,14 @@ class AppTest {
     }
 
     @Test
-    fun `목록?page=1&keywordType=content&keyword=1`() {
+    fun `목록?page=1&keywordType=saying&keyword=1`() {
 
         TestBot.makeSampleData(10)
 
         val result = TestBot.run(
             """
-              목록?page=1&keywordType=content&keyword=1
-              """.trimIndent()
+             목록?page=1&keywordType=saying&keyword=1
+             """.trimIndent()
         )
 
         assertThat(result)

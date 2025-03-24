@@ -1,6 +1,7 @@
 package domain.wiseSaying.repository
 
 import domain.wiseSaying.entity.WiseSaying
+import global.Page
 
 class WiseSayingMemRepository : WiseSayingRepository{
 
@@ -47,6 +48,14 @@ class WiseSayingMemRepository : WiseSayingRepository{
     }
 
     override fun findBySayingLike(keyword: String): List<WiseSaying> {
+        TODO("Not yet implemented")
+    }
+
+    override fun findByAuthorLikePaged(keyword: String, page: Int, pageSize: Int): Page {
+        TODO("Not yet implemented")
+    }
+
+    override fun findBySayingLikePaged(keyword: String, page: Int, pageSize: Int): Page {
         TODO("Not yet implemented")
     }
 }

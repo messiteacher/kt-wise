@@ -1,6 +1,7 @@
 package domain.wiseSaying.repository
 
 import domain.wiseSaying.entity.WiseSaying
+import global.Page
 
 interface WiseSayingRepository {
 
@@ -11,4 +12,6 @@ interface WiseSayingRepository {
     fun clear()
     fun findByAuthorLike(keyword: String): List<WiseSaying>
     fun findBySayingLike(keyword: String): List<WiseSaying>
+    fun findByAuthorLikePaged(keyword: String, page: Int, pageSize: Int): Page
+    fun findBySayingLikePaged(keyword: String, page: Int, pageSize: Int): Page
 }
